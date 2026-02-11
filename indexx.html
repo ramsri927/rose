@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Rose For You 🌹</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(to bottom,#050505,#120014);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Segoe UI',sans-serif;
+  overflow:hidden;
+  color:white;
+}
+
+/* Rose container */
+.rose-box{
+  position:relative;
+  cursor:pointer;
+  animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+
+/* Rose flower */
+.rose{
+  position:relative;
+  width:140px;
+  height:140px;
+}
+
+/* Petals */
+.petal{
+  position:absolute;
+  width:90px;
+  height:90px;
+  background:radial-gradient(circle at 30% 30%,#ff7b8b,#b3002d);
+  border-radius:60% 60% 60% 60%;
+  box-shadow:0 8px 20px rgba(0,0,0,.6);
+}
+
+.p1{top:25px; left:25px; z-index:3;}
+.p2{top:10px; left:0; transform:rotate(-25deg);}
+.p3{top:10px; right:0; transform:rotate(25deg);}
+.p4{bottom:0; left:10px; transform:rotate(-40deg);}
+.p5{bottom:0; right:10px; transform:rotate(40deg);}
+
+/* Center bud */
+.center{
+  position:absolute;
+  top:45px;
+  left:45px;
+  width:50px;
+  height:50px;
+  background:radial-gradient(circle,#8b001e,#4d000f);
+  border-radius:50%;
+  z-index:5;
+}
+
+/* Stem */
+.stem{
+  position:absolute;
+  top:140px;
+  left:65px;
+  width:10px;
+  height:160px;
+  background:linear-gradient(#2e8b57,#145a32);
+  border-radius:10px;
+}
+
+/* Message */
+.message{
+  position:absolute;
+  bottom:40px;
+  width:90%;
+  text-align:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1.2s ease;
+}
+
+.message.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.message h2{
+  color:#ff6b81;
+  margin-bottom:12px;
+}
+
+button{
+  margin-top:18px;
+  padding:12px 32px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:white;
+  font-size:16px;
+  box-shadow:0 0 25px rgba(255,77,109,.8);
+  cursor:pointer;
+}
+
+/* Falling petals */
+.fall{
+  position:fixed;
+  top:-40px;
+  width:25px;
+  height:25px;
+  background:radial-gradient(circle,#ff7b8b,#b3002d);
+  border-radius:50%;
+  opacity:.85;
+  animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="rose-box" onclick="openRose()">
+  <div class="rose">
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="petal p5"></div>
+    <div class="center"></div>
+  </div>
+  <div class="stem"></div>
+</div>
+
+<div class="message" id="msg">
+  <h2>🌹 This Rose is Real… Like My Feelings 🌹</h2>
+  <p>
+    Indha rose artificial illa…<br>
+    adhe maari **en feelings um fake illa** 💖<br><br>
+    Simple rose dhan…<br>
+    aana adha vida **nee romba precious**.
+  </p>
+  <button onclick="final()">Will You Say Yes? 💍</button>
+</div>
+
+<script>
+function openRose(){
+  document.getElementById("msg").classList.add("show");
+  for(let i=0;i<25;i++){
+    let p=document.createElement("div");
+    p.className="fall";
+    p.style.left=Math.random()*100+"vw";
+    p.style.animationDuration=3+Math.random()*3+"s";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),6000);
+  }
+}
+
+function final(){
+  alert("🌹 From this rose… to forever with you 💖");
+}
+</script>
+
+</body>
+</html>
